@@ -22,4 +22,14 @@ public class UserRepository {
     public boolean deleteUser(String id) {
         return users.removeIf(u -> u.getId().equals(id));
     }
+
+    public boolean updateUser(String originalId, User updatedUser) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId().equals(originalId)) {
+                users.set(i, updatedUser);
+                return true;
+            }
+        }
+        return false;
+    }
 }

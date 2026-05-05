@@ -23,4 +23,9 @@ public class UserService {
     public boolean removeUser(String id) {
         return repository.deleteUser(id);
     }
+
+    public boolean updateUserDetails(String originalId, String newId, String newName, String newEmail) {
+        User updatedUser = new User(newId, newName, newEmail);
+        return repository.updateUser(originalId, updatedUser);
+    }
 }

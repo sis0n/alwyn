@@ -19,7 +19,18 @@ public class UserController {
         return service.listUsers();
     }
 
+    public User getUserById(String id) {
+        return service.listUsers().stream()
+                .filter(u -> u.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
     public boolean deleteUser(String id) {
         return service.removeUser(id);
+    }
+
+    public boolean updateUser(String originalId, String newId, String name, String email) {
+        return service.updateUserDetails(originalId, newId, name, email);
     }
 }
