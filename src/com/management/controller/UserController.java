@@ -11,8 +11,8 @@ public class UserController {
         this.service = service;
     }
 
-    public void addUser(String id, String name, String email) {
-        service.createUser(id, name, email);
+    public boolean addUser(String id, String name, String email) {
+        return service.createUser(id, name, email);
     }
 
     public List<User> getAllUsers() {
@@ -20,10 +20,7 @@ public class UserController {
     }
 
     public User getUserById(String id) {
-        return service.listUsers().stream()
-                .filter(u -> u.getId().equals(id))
-                .findFirst()
-                .orElse(null);
+        return service.getUserById(id);
     }
 
     public boolean deleteUser(String id) {

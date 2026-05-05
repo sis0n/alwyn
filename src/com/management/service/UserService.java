@@ -11,13 +11,21 @@ public class UserService {
         this.repository = repository;
     }
 
-    public void createUser(String id, String name, String email) {
+    public boolean createUser(String id, String name, String email) {
+        if (repository.getUserById(id) != null) {
+            return false;
+        }
         User newUser = new User(id, name, email);
         repository.addUser(newUser);
+        return true;
     }
 
     public List<User> listUsers() {
         return repository.getAllUsers();
+    }
+
+    public User getUserById(String id) {
+        return repository.getUserById(id);
     }
 
     public boolean removeUser(String id) {
